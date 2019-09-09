@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+echo 'map $request_uri $redirect_uri {'
+echo '  default https://wiki.hal9k.dk/infrastruktur/it-services/qr/qr-kode_infoside;'
+(
+  cd /var/www/wiki/data/pages
+  grep -oriE 'hqr[0-9]+' | tr ':' ' ' | sort -t ' ' -k 2 -u \
+    | while read -r file code; do
+      from=$(echo "$code" | tr '[a-z]' '[A-Z]')
+
+      todir=$(dirname "$file")
+      tofile=$(basename -s .txt "$file")
+
+      echo "  /$from https://wiki.hal9k.dk/$todir/$tofile;"
+  done 
+)
+echo '}'

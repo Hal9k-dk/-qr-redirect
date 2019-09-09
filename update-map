@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 echo 'map $request_uri $redirect_uri {'
-echo '  default https://wiki.hal9k.dk/infrastruktur/it-services/qr/qr-kode_infoside;'
 (
   cd /var/www/wiki/data/pages
   grep -oriE 'hqr[0-9]+' | tr ':' ' ' | sort -t ' ' -k 2 -u \

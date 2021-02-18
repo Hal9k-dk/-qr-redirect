@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+(
+if flock -n 9; then
+  cd "$QRR_WATCH_FOLDER" || exit
+  (
+  echo 'map $request_uri $redirect_uri {'
+  rg -g '!'"$QRR_LINK_MAP" --no-heading -N -io 'hqr[0-9]+' | tr ':' ' ' | sort -t ' ' -k 2 -u \
+    | while read -r file code; do
+    from=$(echo "$code" | tr '[:lower:]' '[:upper:]')
+
+    todir=$(dirname "$file")
+    if [ "$todir" = "." ]; then
+      todir=""
+    else
+      todir="$todir/"
+    fi
+    tofile=$(basename -s .txt "$file")
+
+    echo "  /$from $QRR_PREFIX/$todir$tofile;"
+  done
+  echo '}'
+
+  ) > /etc/nginx/redirect-map.conf
+  if [ -f  /var/run/nginx.pid ]; then
+    kill -HUP "$(cat /var/run/nginx.pid)"
+  fi
+fi
+) 9>/tmp/generate_redirect_map.lock

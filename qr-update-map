@@ -1,5 +1,0 @@
-SHELL=/bin/sh
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-
-*/5 * * * * root /usr/local/lib/qr-redirect/bin/update-map > /usr/local/lib/qr-redirect/redirect-map.conf.tmp && mv /usr/local/lib/qr-redirect/redirect-map.conf.tmp /usr/local/lib/qr-redirect/redirect-map.conf
-*/5 * * * * root /usr/local/lib/qr-redirect/bin/makemap > /var/www/qr/mapping.html.tmp && mv /var/www/qr/mapping.html.tmp /var/www/qr/mapping.html

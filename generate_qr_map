@@ -1,0 +1,13 @@
+#!/bin/sh
+(
+if flock -n 9; then
+  cd "$QRR_WATCH_FOLDER" || exit
+  echo "Updating QR list: $QRR_LINK_MAP"
+  (
+    grep HQR /etc/nginx/redirect-map.conf \
+      | sort -n -t 'R' -k 2 \
+      | sed -E "s%[[:space:]]*/(HQR[[:digit:]]+) $QRR_PREFIX/(.*);%[[\2|\1 -- \2]]\\\\\\\\%" \
+      | tr '/' ':'
+  ) > "$QRR_LINK_MAP"
+fi
+) 9>/tmp/generate_qr_map.lock

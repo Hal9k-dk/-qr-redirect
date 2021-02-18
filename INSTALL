@@ -1,9 +1,0 @@
-sudo mkdir -p /var/www/qr
-sudo mkdir -p /usr/local/lib/qr-redirect/bin
-sudo cp update-map /usr/local/lib/qr-redirect/bin/
-sudo cp makemap /usr/local/lib/qr-redirect/bin/
-/usr/local/lib/qr-redirect/bin/update-map | sudo tee /usr/local/lib/qr-redirect/redirect-map.conf
-/usr/local/lib/makemap | sudo tee /var/www/qr/mapping.html
-sudo cp qr-update-map /etc/cron.d/
-sudo cp qr.hal9k.dk.conf /etc/nginx/sites-enabled/
-sudo systemctl reload nginx

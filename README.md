@@ -77,4 +77,4 @@ To use with dokuwiki you can try the following:
       -e QRR_LINK_MAP=/config/dokuwiki/data/pages/qr.txt \
       --volumes-from dokuwiki \
       -p 8080:80 \
-      hal9k-dk/qr-redirect
+      hal9kdk/qr-redirect:latest

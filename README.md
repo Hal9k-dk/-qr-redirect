@@ -1,3 +1,18 @@
+# HQR code reference thingy
+
+At Hal9k we use stickers with QR codes to link physical things to pages on
+our wiki. The QR codes each contain a url to `http://qr.hal9k.dk/HQRxxxx`,
+where **xxxx** is an integer.
+
+This docker image contains a service which sets up redirects from the
+above URL scheme to wiki page in dokuwiki containing the text `HQRxxxx`.
+
+It also generate a list of all currently known HQR code references in the
+wiki, on a wiki page.
+
+This is done by scanning all the wiki pages on various filesystem events
+as well as periodically.
+
 ## Parameters
 
 This Docker image is based on the official nginx image, and inherits some

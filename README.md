@@ -74,7 +74,7 @@ To use with dokuwiki you can try the following:
       -e QRR_NOT_FOUND="/infrastruktur/it-services/qr/qr-kode_infoside" \
       -e QRR_REBUILD_RATE_LIMIT=10 \
       -e QRR_REBUILD_FREQ=600 \
-      -e QRR_LINK_MAP=/config/dokuwiki/data/pages/qr.txt \
+      -e QRR_LINK_MAP=qr.txt \
       --volumes-from dokuwiki \
       -p 8080:80 \
       hal9kdk/qr-redirect:latest

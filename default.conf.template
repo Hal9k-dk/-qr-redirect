@@ -3,12 +3,12 @@ include /etc/nginx/redirect-map.conf;
 server {
   listen 80;
   listen [::]:80;
-
-  location / {
-    root   /usr/share/nginx/html;
-    index  index.html index.htm;
-  }
   server_name ${NGINX_HOST};
+
+  location = /robots.txt {
+    add_header Content-Type text/plain;
+    return 200 "User-agent: *\nDisallow: /\n";
+  }
 
   error_page 404 ${QRR_PREFIX}${QRR_NOT_FOUND};
 
